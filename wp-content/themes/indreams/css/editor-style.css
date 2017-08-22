@@ -1,0 +1,113 @@
+body.wp-autoresize,
+body {
+	color: #404040;
+	font-family: 'Merriweather', serif;
+	font-size: 14px;
+	line-height: 1.6;
+	word-wrap: break-word;
+}
+html,
+body {
+	height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700; 
+	margin-bottom: 20px; 
+	color: #202020;
+}
+
+h1 { font-size: 3.428rem; }  /* font-size: 48px; */
+
+h2 { font-size: 2.714rem; }  /* font-size: 38px; */
+
+h3 { font-size: 2.142rem; }  /* font-size: 30px; */
+
+h4 { font-size: 1.714rem; }  /* font-size: 24px; */
+
+h5 { font-size: 1.428rem; }  /* font-size: 20px; */
+
+h6 { font-size: 1.285rem; }  /* font-size: 18px; */
+
+@media(max-width: 1024px){
+	h1 { font-size: 3.142rem; }  /* font-size: 44px; */
+
+	h2 { font-size: 2.428rem; }  /* font-size: 34px; */
+
+	h3 { font-size: 1.857rem; }  /* font-size: 26px; */
+}
+
+@media(max-width: 640px){
+	h1 { font-size: 2.285rem; }  /* font-size: 32px; */
+
+	h2 { font-size: 2rem; }  /* font-size: 28px; */
+
+	h3 { font-size: 1.714rem; }  /* font-size: 24px; */
+
+	h4 { font-size: 1.571rem; }  /* font-size: 22px; */
+}
+
+
+p { margin-bottom: 1.5rem; }
+p:last-child { margin-bottom: 0; }
+a { color: #2196F3; }
+a.more-link {
+	text-align: center;
+	display: block;
+	margin-top: 2.5rem;
+	text-transform: uppercase;
+	letter-spacing: .1rem;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1.1rem;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+.gallery { margin-bottom: 1.5rem; }
+.gallery img { margin-bottom: 0; }
+ul, ol { padding-left: 4rem; }
+
+blockquote {
+    margin: 0 0 1.5em;
+    background-color: #f7f7f7;
+    border-left-color: #2196F3;
+}
+
+dt {
+	font-weight: bold;
+}
+
+code,
+kbd,
+tt,
+var {
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 15px;
+	font-size: 0.9375rem;
+}
+
+hr {
+	background-color: #ccc;
+	border: 0;
+	height: 1px;
+	margin-bottom: 1.5em;
+}
+
+.wp-caption-dd {
+	border: 0;
+    padding: .5rem 2rem 0;
+    margin-bottom: 0;
+    color: #2A2D33;
+    text-align: center;
+    font-style: italic;
+}
