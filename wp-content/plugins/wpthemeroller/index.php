@@ -25,35 +25,48 @@ class wpThemeRoller{
         wp_register_script('jQuery', plugins_url('utilities/js/jquery-3.2.1.min.js', __FILE__), null, null);
         wp_register_script('colorPickerJs', plugins_url('utilities/js/jquery.minicolors.min.js', __FILE__), array('jQuery'), null, null);
         wp_register_script('fontPickerJs', plugins_url('utilities/js/jquery.fontselector.js', __FILE__), array('jQuery'), null, null);
+        wp_register_script('bootstrapJs', plugins_url('utilities/js/bootstrap.min.js', __FILE__), array('jQuery'), null, null);
         wp_register_script('WrtBasicJs', plugins_url('utilities/js/jQueryWrtBasicJs.js', __FILE__),array('jQuery', 'colorPickerJs', 'fontPickerJs'), null, null);
         
         wp_register_style('colorPickerCss', plugins_url('utilities/css/jquery.minicolors.css', __FILE__), null, '1.0', null);
+        wp_register_style('bootstrapCss', plugins_url('utilities/css/bootstrap.min.css', __FILE__), null, '1.0', null);
+        wp_register_style('bootstrapRebootCss', plugins_url('utilities/css/bootstrap-theme.min.css', __FILE__), null, '1.0', null);
+        wp_register_style('fontselector', plugins_url('utilities/css/fontselector.css', __FILE__), null, '1.0', null);
     }
     function adminEnqueueStylesAndScripts(){
         wp_enqueue_script('jQuery');
         wp_enqueue_script('colorPickerJs');
         wp_enqueue_script('fontPickerJs');
+        wp_enqueue_script('bootstrapJs');
         wp_enqueue_script('WrtBasicJs');
         wp_enqueue_style('colorPickerCss');
+        wp_enqueue_style('bootstrapCss');
+        wp_enqueue_style('bootstrapRebootCss');
+        wp_enqueue_style('fontselector');
     }
     function AddAdminMenu() {
-	add_menu_page( 'Theme coustomizer', 'WP Theme Coustomizer', 'manage_options', 'my-unique-identifier', array($this, 'my_plugin_options'),'', 60 );
+        $wrt_short_code_page_obj = new wrtShortCodePages();
+	add_menu_page( 'Theme coustomizer', 'WP Theme Coustomizer', 'manage_options', 'wrt-theme-customizer', array($wrt_short_code_page_obj, 'wrtThemeCustomizer'),'', 60 );
+        add_submenu_page( 'wrt-theme-customizer', 'CSS Properties', 'CSS Properties', 'manage_options', 'wrt-css-properties', array($wrt_short_code_page_obj, 'wrtCssProperties') );
     }
-    public function addFilters(){
-        
-    }
+   
     public function enqueueStylesAndScripts(){
         wp_enqueue_script('jQuery');
         wp_enqueue_script('colorPickerJs');
         wp_enqueue_script('fontPickerJs');
+        wp_enqueue_script('bootstrapJs');
         wp_enqueue_script('WrtBasicJs');
         
         wp_enqueue_style('colorPickerCss');
+        wp_enqueue_style('bootstrapCss');
+        wp_enqueue_style('bootstrapRebootCss');
+        wp_enqueue_style('fontselector');
     }
     public function includeFiles(){
         include_once 'includes/wtr_db_operations.php';
         include_once 'includes/add_wrt_classes.php';
         include_once 'includes/wrt_page_operations.php';
+        include_once 'includes/wrt_shortcode_pages.php';
     }
     static function createWrtPluginPages(){
         $wrtPageOperations_obj = new wrtPageOperations();
@@ -64,13 +77,24 @@ class wpThemeRoller{
         $wrtPageOperations_obj->remove_plugin_pages('theme-settings' );
     }
     function addShortcodes(){
-        add_shortcode( 'theme-settings' , array($this, 'my_plugin_options') );
+        $wrt_short_code_page_obj = new wrtShortCodePages();
+        add_shortcode( 'theme-settings' , array($wrt_short_code_page_obj, 'wrtThemeCustomizer') );
     }
-    function my_plugin_options(){
-        include_once 'templates/customizeTheme.php';
+    
+    public function addFilters(){
+        
     }
 }
 
 register_activation_hook( __FILE__, array( 'wpThemeRoller', 'createWrtPluginPages' ) );
 register_deactivation_hook( __FILE__, array( 'wpThemeRoller', 'removeWrtPluginPages' ) );
 $am = new wpThemeRoller;
+
+add_action('after_setup_theme','remove_core_updates');
+function remove_core_updates()
+{
+if(! current_user_can('update_core')){return;}
+add_action('init', create_function('$a',"remove_action( 'init', 'wp_version_check' );"),2);
+add_filter('pre_option_update_core','__return_null');
+add_filter('pre_site_transient_update_core','__return_null');
+}

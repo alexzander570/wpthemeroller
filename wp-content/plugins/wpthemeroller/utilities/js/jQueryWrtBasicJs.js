@@ -5,6 +5,7 @@
  */
 
 jQuery(document).ready(function () {
+    //For color-picker
     jQuery('.demo').each(function () {
         $(this).minicolors({
             control: jQuery(this).attr('data-control') || 'hue',
@@ -17,24 +18,24 @@ jQuery(document).ready(function () {
             position: jQuery(this).attr('data-position') || 'bottom left',
             swatches: jQuery(this).attr('data-swatches') ? jQuery̰(this).attr('data-swatches').split('|') : [],
             change: function (hex, opacity) {
-                var log;
                 try {
-                    log = hex ? hex : 'transparent';
-                    if (opacity)
-                        log += ', ' + opacity;
-                    console.log(log);
+                    var classes = '.'+jQuery(this).attr('data-classes');
+                    jQuery('#test-iframe').contents().find(classes).css('background-color', hex);
                 } catch (e) {
                 }
             },
-            theme: 'default'
+            theme: 'bootstrap'
         });
     });
 
+
+    //For font-family dropdown
     $('#fontSelect').fontSelector({
         'hide_fallbacks': true,
         'initial': 'Courier New,Courier New,Courier,monospace',
         'selected': function (style) {
-            jQuery('#font-type').val(style);
+            jQuery('#test-iframe').contents().find('body').css('font-family', style);
+            jQuery(this).parent().find('#wrt[global][font-type]').val(style);
         },
         'fonts': [
             'Arial,Arial,Helvetica,sans-serif',
@@ -53,4 +54,5 @@ jQuery(document).ready(function () {
             'Gill Sans,Geneva,sans-serif'
         ]
     });
+
 });

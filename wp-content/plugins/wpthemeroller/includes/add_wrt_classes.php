@@ -16,7 +16,12 @@ class addWrtClasses {
         $this->addClassesFilters();
     }
     public function addClassesFilters(){
+        add_filter( 'body_class', array($this, 'wrtAddBodyClass'));
         add_filter('nav_menu_css_class' , array($this, 'custom_nav_class') , 10 , 2);
+    }
+    function wrtAddBodyClass($classes){
+        $classes[] = 'wrt_theme_body';
+        return $classes;
     }
     function custom_nav_class($classes){
         if(in_array('current-menu-item', $classes)){
@@ -26,6 +31,7 @@ class addWrtClasses {
         }
         return $classes;
     }
+    
 }
 
 $add_wrt_classes = new addWrtClasses();
