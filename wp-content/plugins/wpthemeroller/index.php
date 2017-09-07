@@ -17,7 +17,24 @@ class wpThemeRoller{
     }
     public function addAction(){
         add_action( 'admin_menu', array($this,'AddAdminMenu') );
+        add_action( 'wp_loaded', array($this, 'register_all_scripts'));
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueueStylesAndScripts' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'adminEnqueueStylesAndScripts' ) );
+    }
+    function register_all_scripts(){
+        wp_register_script('jQuery', plugins_url('utilities/js/jquery-3.2.1.min.js', __FILE__), null, null);
+        wp_register_script('colorPickerJs', plugins_url('utilities/js/jquery.minicolors.min.js', __FILE__), array('jQuery'), null, null);
+        wp_register_script('fontPickerJs', plugins_url('utilities/js/jquery.fontselector.js', __FILE__), array('jQuery'), null, null);
+        wp_register_script('WrtBasicJs', plugins_url('utilities/js/jQueryWrtBasicJs.js', __FILE__),array('jQuery', 'colorPickerJs', 'fontPickerJs'), null, null);
+        
+        wp_register_style('colorPickerCss', plugins_url('utilities/css/jquery.minicolors.css', __FILE__), null, '1.0', null);
+    }
+    function adminEnqueueStylesAndScripts(){
+        wp_enqueue_script('jQuery');
+        wp_enqueue_script('colorPickerJs');
+        wp_enqueue_script('fontPickerJs');
+        wp_enqueue_script('WrtBasicJs');
+        wp_enqueue_style('colorPickerCss');
     }
     function AddAdminMenu() {
 	add_menu_page( 'Theme coustomizer', 'WP Theme Coustomizer', 'manage_options', 'my-unique-identifier', array($this, 'my_plugin_options'),'', 60 );
@@ -26,7 +43,12 @@ class wpThemeRoller{
         
     }
     public function enqueueStylesAndScripts(){
-        wp_enqueue_script('angularJsMain', plugins_url('utilities/js/angular.min.js', __FILE__), null, null);
+        wp_enqueue_script('jQuery');
+        wp_enqueue_script('colorPickerJs');
+        wp_enqueue_script('fontPickerJs');
+        wp_enqueue_script('WrtBasicJs');
+        
+        wp_enqueue_style('colorPickerCss');
     }
     public function includeFiles(){
         include_once 'includes/wtr_db_operations.php';
@@ -45,7 +67,7 @@ class wpThemeRoller{
         add_shortcode( 'theme-settings' , array($this, 'my_plugin_options') );
     }
     function my_plugin_options(){
-        echo 'Hi';
+        include_once 'templates/customizeTheme.php';
     }
 }
 
