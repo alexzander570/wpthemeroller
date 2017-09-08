@@ -5,6 +5,22 @@
  */
 
 jQuery(document).ready(function () {
+    var font_families = [
+            'Arial,Arial,Helvetica,sans-serif',
+            'Arial Black,Arial Black,Gadget,sans-serif',
+            'Comic Sans MS,Comic Sans MS,cursive',
+            'Courier New,Courier New,Courier,monospace',
+            'Georgia,Georgia,serif',
+            'Impact,Charcoal,sans-serif',
+            'Lucida Console,Monaco,monospace',
+            'Lucida Sans Unicode,Lucida Grande,sans-serif',
+            'Palatino Linotype,Book Antiqua,Palatino,serif',
+            'Tahoma,Geneva,sans-serif',
+            'Times New Roman,Times,serif',
+            'Trebuchet MS,Helvetica,sans-serif',
+            'Verdana,Geneva,sans-serif',
+            'Gill Sans,Geneva,sans-serif'
+        ];
     //For color-picker
     jQuery('.demo').each(function () {
         $(this).minicolors({
@@ -20,7 +36,8 @@ jQuery(document).ready(function () {
             change: function (hex, opacity) {
                 try {
                     var classes = '.'+jQuery(this).attr('data-classes');
-                    jQuery('#test-iframe').contents().find(classes).css('background-color', hex);
+                    var data_prop = jQuery(this).attr('data-prop');
+                    jQuery('#test-iframe').contents().find(classes).css(data_prop, hex);
                 } catch (e) {
                 }
             },
@@ -34,25 +51,13 @@ jQuery(document).ready(function () {
         'hide_fallbacks': true,
         'initial': 'Courier New,Courier New,Courier,monospace',
         'selected': function (style) {
-            jQuery('#test-iframe').contents().find('body').css('font-family', style);
-            jQuery(this).parent().find('#wrt[global][font-type]').val(style);
+            var data_classes = jQuery(this).attr('target_class');
+            var body_class = "."+data_classes;
+            var font_type_input_id = "#"+data_classes;
+            jQuery('#test-iframe').contents().find(body_class).css('font-family', style);
+            jQuery(this).parent().find(font_type_input_id).val(style);
         },
-        'fonts': [
-            'Arial,Arial,Helvetica,sans-serif',
-            'Arial Black,Arial Black,Gadget,sans-serif',
-            'Comic Sans MS,Comic Sans MS,cursive',
-            'Courier New,Courier New,Courier,monospace',
-            'Georgia,Georgia,serif',
-            'Impact,Charcoal,sans-serif',
-            'Lucida Console,Monaco,monospace',
-            'Lucida Sans Unicode,Lucida Grande,sans-serif',
-            'Palatino Linotype,Book Antiqua,Palatino,serif',
-            'Tahoma,Geneva,sans-serif',
-            'Times New Roman,Times,serif',
-            'Trebuchet MS,Helvetica,sans-serif',
-            'Verdana,Geneva,sans-serif',
-            'Gill Sans,Geneva,sans-serif'
-        ]
+        'fonts': font_families
     });
 
 });

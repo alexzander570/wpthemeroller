@@ -8,6 +8,8 @@
 * Author URI: 
 */
 
+define ("FONTWEIGHT", serialize (array ("Normal", "100", "200", "300", "400", "500", "600", "700", "800", "900", "Bold", "Bolder", "Lighter")));
+
 class wpThemeRoller{
     function __construct(){
         $this->addAction();

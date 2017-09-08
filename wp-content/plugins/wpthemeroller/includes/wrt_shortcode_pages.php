@@ -8,6 +8,9 @@
 
 class wrtShortCodePages{
     public function wrtThemeCustomizer(){
+        if(isset($_POST) && !empty($_POST)){
+            echo '<pre>';print_r($_POST);die;
+        }
         include (__DIR__.'/../templates/customizeTheme.php');
     }
     
