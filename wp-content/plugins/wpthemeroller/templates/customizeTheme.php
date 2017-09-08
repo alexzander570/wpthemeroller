@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label for="text-field">Background color</label>
                                 <br>
-                                <input type="text" id="text-field" class="form-control demo" value="" data-classes="wrt_menu_class">
+                                <input type="text" id="text-field" class="form-control demo" value="" id="wrt_menu_class_background-color" name="wrt[wrt_menu_class][background-color]" data-classes="wrt_menu_class" data-prop="background-color">
                             </div>
                         </div>
                         <div class="col-lg-12 col-sm-12 col-12">
@@ -72,6 +72,6 @@
         </form>
     </div>
     <div class="col-lg-9 col-sm-9 col-xs-9" style="position: fixed;left: 36%;">
-        <iframe src=”<?php echo site_url(); ?>” height="650px" width="800px" id="test-iframe" style="border: 1px solid #000000;"></iframe>
+        <iframe src=<?php echo home_url(); ?> height="650px" width="800px" id="test-iframe" style="border: 1px solid #000000;"></iframe>
     </div>
 </div>

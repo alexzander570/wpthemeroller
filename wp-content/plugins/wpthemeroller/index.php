@@ -12,12 +12,14 @@ define ("FONTWEIGHT", serialize (array ("Normal", "100", "200", "300", "400", "5
 
 class wpThemeRoller{
     function __construct(){
-        $this->addAction();
         $this->includeFiles();
+        $this->addAction();
         $this->addFilters();
         $this->addShortcodes();
     }
     public function addAction(){
+        $user_style_operation_obj = new wrtUserStyleOperations();
+        add_action( 'init', array($user_style_operation_obj, 'getCurrentUserStyle'));
         add_action( 'admin_menu', array($this,'AddAdminMenu') );
         add_action( 'wp_loaded', array($this, 'register_all_scripts'));
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueueStylesAndScripts' ) );
@@ -65,10 +67,11 @@ class wpThemeRoller{
         wp_enqueue_style('fontselector');
     }
     public function includeFiles(){
-        include_once 'includes/wtr_db_operations.php';
+        include_once 'includes/wrt_db_operations.php';
         include_once 'includes/add_wrt_classes.php';
         include_once 'includes/wrt_page_operations.php';
         include_once 'includes/wrt_shortcode_pages.php';
+        include_once 'includes/wrt_user_style_operations.php';
     }
     static function createWrtPluginPages(){
         $wrtPageOperations_obj = new wrtPageOperations();

@@ -9,7 +9,9 @@
 class wrtShortCodePages{
     public function wrtThemeCustomizer(){
         if(isset($_POST) && !empty($_POST)){
-            echo '<pre>';print_r($_POST);die;
+            $wrt_db_operation_obj = new wrtDbOperations();
+            $user_style_sheet = isset($_POST['wrt'])?$_POST['wrt']:'';
+            $wrt_db_operation_obj->saveUserStyleSheet(json_encode($user_style_sheet));
         }
         include (__DIR__.'/../templates/customizeTheme.php');
     }
