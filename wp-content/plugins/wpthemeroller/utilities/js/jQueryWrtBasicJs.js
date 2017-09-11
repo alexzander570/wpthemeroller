@@ -6,6 +6,7 @@
 
 jQuery(document).ready(function () {
     var font_families = [
+            'Inherit',
             'Arial,Arial,Helvetica,sans-serif',
             'Arial Black,Arial Black,Gadget,sans-serif',
             'Comic Sans MS,Comic Sans MS,cursive',
@@ -37,7 +38,11 @@ jQuery(document).ready(function () {
                 try {
                     var classes = '.'+jQuery(this).attr('data-classes');
                     var data_prop = jQuery(this).attr('data-prop');
-                    jQuery('#test-iframe').contents().find(classes).css(data_prop, hex);
+                    var test_ifram_style = jQuery('#test-iframe').contents().find(classes).attr('style');
+                    if(typeof(test_ifram_style) === undefined || typeof(test_ifram_style) === 'undefined'){
+                        test_ifram_style = '';
+                    }
+                    jQuery('#test-iframe').contents().find(classes).attr('style', test_ifram_style+data_prop+': '+ hex+'!important;');
                 } catch (e) {
                 }
             },
@@ -45,17 +50,32 @@ jQuery(document).ready(function () {
         });
     });
 
+    jQuery('body').on('blur', '.text_field_css_prop', function(){
+        var classes = '.'+jQuery(this).attr('data-classes');
+        var data_prop = jQuery(this).attr('data-prop');
+        var text_field_css_prop_val = jQuery(this).val();
+        var test_ifram_style = jQuery('#test-iframe').contents().find(classes).attr('style');
+        if(typeof(test_ifram_style) === undefined || typeof(test_ifram_style) === 'undefined'){
+            test_ifram_style = '';
+        }
+        jQuery('#test-iframe').contents().find(classes).attr('style', test_ifram_style+data_prop+': '+ text_field_css_prop_val+'!important;');
+    });
 
     //For font-family dropdown
     $('#fontSelect').fontSelector({
         'hide_fallbacks': true,
-        'initial': 'Courier New,Courier New,Courier,monospace',
+        'initial': $(this).attr('data-font-family'),
         'selected': function (style) {
             var data_classes = jQuery(this).attr('target_class');
             var body_class = "."+data_classes;
             var font_type_input_id = "#"+data_classes;
-            jQuery('#test-iframe').contents().find(body_class).css('font-family', style);
+            var test_ifram_style = jQuery('#test-iframe').contents().find(data_classes).attr('style');
             jQuery(this).parent().find(font_type_input_id).val(style);
+            if(typeof(test_ifram_style) === undefined || typeof(test_ifram_style) === 'undefined'){
+                test_ifram_style = '';
+            }
+            jQuery('#test-iframe').contents().find(body_class).attr('style', test_ifram_style+'font-family:'+style+'!important;');
+            
         },
         'fonts': font_families
     });

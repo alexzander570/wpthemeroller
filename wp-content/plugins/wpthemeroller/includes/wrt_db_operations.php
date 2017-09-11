@@ -31,13 +31,24 @@ class wrtDbOperations{
 
     public function saveUserStyleSheet($user_style_sheet){
         global $wpdb;
-        $wpdb->insert($this->user_custom_theme, array('user_id'=>$this->current_user_id, 'custom_styling'=>$user_style_sheet, 'created_by'=>$this->current_user_id, 'created_on'=>date("Y-m-d h:i:s")), array('%d', '%s', '%d', '%s'));
+        $check_if_already_exists = $this->checkIfCurrentUserHasTheme();
+        if($check_if_already_exists > 0){
+            $wpdb->update($this->user_custom_theme, array('custom_styling'=>$user_style_sheet, 'modified_by'=>$this->current_user_id, 'modified_on'=>date("Y-m-d h:i:s")), array('user_id'=>$this->current_user_id));
+        }else{
+            $wpdb->insert($this->user_custom_theme, array('user_id'=>$this->current_user_id, 'custom_styling'=>$user_style_sheet, 'created_by'=>$this->current_user_id, 'created_on'=>date("Y-m-d h:i:s")), array('%d', '%s', '%d', '%s'));
+        }
     }
 
     public function get_current_user_style_sheet(){
         global $wpdb;
         $style_sheet = $wpdb->get_var($wpdb->prepare("SELECT custom_styling FROM {$this->user_custom_theme} WHERE user_id=%d", $this->current_user_id));
         return $style_sheet;
+    }
+    
+    function checkIfCurrentUserHasTheme(){
+        global $wpdb;
+        $style_sheet_count = $wpdb->get_var($wpdb->prepare("SELECT count(id) FROM {$this->user_custom_theme} WHERE user_id=%d", $this->current_user_id));
+        return $style_sheet_count;
     }
 }
 

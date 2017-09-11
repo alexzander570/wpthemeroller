@@ -9,6 +9,7 @@
 */
 
 define ("FONTWEIGHT", serialize (array ("Normal", "100", "200", "300", "400", "500", "600", "700", "800", "900", "Bold", "Bolder", "Lighter")));
+define ("BORDERSTYLE", serialize (array ("none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "initial", "inherit")));
 
 class wpThemeRoller{
     function __construct(){
@@ -36,6 +37,7 @@ class wpThemeRoller{
         wp_register_style('bootstrapCss', plugins_url('utilities/css/bootstrap.min.css', __FILE__), null, '1.0', null);
         wp_register_style('bootstrapRebootCss', plugins_url('utilities/css/bootstrap-theme.min.css', __FILE__), null, '1.0', null);
         wp_register_style('fontselector', plugins_url('utilities/css/fontselector.css', __FILE__), null, '1.0', null);
+        wp_register_style('wrt_custom_style', plugins_url('utilities/css/wrt_style.css', __FILE__), null, '1.0', null);
     }
     function adminEnqueueStylesAndScripts(){
         wp_enqueue_script('jQuery');
@@ -47,6 +49,7 @@ class wpThemeRoller{
         wp_enqueue_style('bootstrapCss');
         wp_enqueue_style('bootstrapRebootCss');
         wp_enqueue_style('fontselector');
+        wp_enqueue_style('wrt_custom_style');
     }
     function AddAdminMenu() {
         $wrt_short_code_page_obj = new wrtShortCodePages();
@@ -65,6 +68,7 @@ class wpThemeRoller{
         wp_enqueue_style('bootstrapCss');
         wp_enqueue_style('bootstrapRebootCss');
         wp_enqueue_style('fontselector');
+        wp_enqueue_style('wrt_custom_style');
     }
     public function includeFiles(){
         include_once 'includes/wrt_db_operations.php';
@@ -72,6 +76,7 @@ class wpThemeRoller{
         include_once 'includes/wrt_page_operations.php';
         include_once 'includes/wrt_shortcode_pages.php';
         include_once 'includes/wrt_user_style_operations.php';
+        include_once 'includes/wrt_generate_html_tags.php';
     }
     static function createWrtPluginPages(){
         $wrtPageOperations_obj = new wrtPageOperations();
@@ -95,11 +100,11 @@ register_activation_hook( __FILE__, array( 'wpThemeRoller', 'createWrtPluginPage
 register_deactivation_hook( __FILE__, array( 'wpThemeRoller', 'removeWrtPluginPages' ) );
 $am = new wpThemeRoller;
 
-add_action('after_setup_theme','remove_core_updates');
-function remove_core_updates()
-{
-if(! current_user_can('update_core')){return;}
-add_action('init', create_function('$a',"remove_action( 'init', 'wp_version_check' );"),2);
-add_filter('pre_option_update_core','__return_null');
-add_filter('pre_site_transient_update_core','__return_null');
-}
+//add_action('after_setup_theme','remove_core_updates');
+//function remove_core_updates()
+//{
+//if(! current_user_can('update_core')){return;}
+//add_action('init', create_function('$a',"remove_action( 'init', 'wp_version_check' );"),2);
+//add_filter('pre_option_update_core','__return_null');
+//add_filter('pre_site_transient_update_core','__return_null');
+//}

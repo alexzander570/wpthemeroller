@@ -7,12 +7,17 @@
  */
 
 class wrtShortCodePages{
+    private $wrtDbOperations_obj, $wrtGenerateHtmlTags_obj;
+    function __construct() {
+        $this->wrtDbOperations_obj = new wrtDbOperations();
+        $this->wrtGenerateHtmlTags_obj = new wrtGenerateHtmlTags();
+    }
     public function wrtThemeCustomizer(){
         if(isset($_POST) && !empty($_POST)){
-            $wrt_db_operation_obj = new wrtDbOperations();
             $user_style_sheet = isset($_POST['wrt'])?$_POST['wrt']:'';
-            $wrt_db_operation_obj->saveUserStyleSheet(json_encode($user_style_sheet));
+            $this->wrtDbOperations_obj->saveUserStyleSheet(json_encode($user_style_sheet));
         }
+        $user_style_sheet = json_decode($this->wrtDbOperations_obj->get_current_user_style_sheet(), true);
         include (__DIR__.'/../templates/customizeTheme.php');
     }
     
