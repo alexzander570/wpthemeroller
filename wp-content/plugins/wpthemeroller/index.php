@@ -81,14 +81,17 @@ class wpThemeRoller{
     static function createWrtPluginPages(){
         $wrtPageOperations_obj = new wrtPageOperations();
         $wrtPageOperations_obj->create_plugin_pages('Theme Settings', 'theme-settings' );
+        $wrtPageOperations_obj->create_plugin_pages('WRT Demo Page', 'wrt-demo-page' );
     }
     static function removeWrtPluginPages(){
         $wrtPageOperations_obj = new wrtPageOperations();
         $wrtPageOperations_obj->remove_plugin_pages('theme-settings' );
+        $wrtPageOperations_obj->remove_plugin_pages('wrt-demo-page' );
     }
     function addShortcodes(){
         $wrt_short_code_page_obj = new wrtShortCodePages();
         add_shortcode( 'theme-settings' , array($wrt_short_code_page_obj, 'wrtThemeCustomizer') );
+        add_shortcode( 'wrt-demo-page' , array($wrt_short_code_page_obj, 'wrtDemoPage') );
     }
     
     public function addFilters(){
@@ -100,11 +103,9 @@ register_activation_hook( __FILE__, array( 'wpThemeRoller', 'createWrtPluginPage
 register_deactivation_hook( __FILE__, array( 'wpThemeRoller', 'removeWrtPluginPages' ) );
 $am = new wpThemeRoller;
 
-//add_action('after_setup_theme','remove_core_updates');
-//function remove_core_updates()
-//{
-//if(! current_user_can('update_core')){return;}
-//add_action('init', create_function('$a',"remove_action( 'init', 'wp_version_check' );"),2);
-//add_filter('pre_option_update_core','__return_null');
-//add_filter('pre_site_transient_update_core','__return_null');
-//}
+function royal_custom_class($classes) {
+        global $post;
+                $classes[] = 'test_div_class'; // Add your class however its generated here
+            return $classes;
+    }
+    add_filter('post_class', 'royal_custom_class');
