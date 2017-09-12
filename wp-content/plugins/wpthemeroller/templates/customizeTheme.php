@@ -1,6 +1,7 @@
 <?php
     $wrt_body_background_color = isset($user_style_sheet['wrt_theme_body']['background-color'])?$user_style_sheet["wrt_theme_body"]["background-color"]:'';
 
+    
     $wrt_menu_background_color = isset($user_style_sheet['wrt_menu_class']['background-color'])?$user_style_sheet["wrt_menu_class"]["background-color"]:'';
     $wrt_menu_background_color_on_hover = isset($user_style_sheet['wrt_menu_class:hover']['background-color'])?$user_style_sheet["wrt_menu_class:hover"]["background-color"]:'';
     $wrt_active_menu_background_color = isset($user_style_sheet['wrt_menu_class:hover']['background-color'])?$user_style_sheet["wrt_menu_class:hover"]["background-color"]:'';
