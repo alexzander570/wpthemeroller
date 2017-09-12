@@ -1,6 +1,7 @@
 <?php
     $wrt_body_background_color = isset($user_style_sheet['wrt_theme_body']['background-color'])?$user_style_sheet["wrt_theme_body"]["background-color"]:'';
-
+    $wrt_body_font_family = isset($user_style_sheet['wrt_theme_body']['font-family'])? stripcslashes($user_style_sheet["wrt_theme_body"]["font-family"]):'';
+    $wrt_heading_font_family = isset($user_style_sheet['wrt_heading']['font-family'])? stripcslashes($user_style_sheet["wrt_heading"]["font-family"]):'';
     
     $wrt_menu_background_color = isset($user_style_sheet['wrt_menu_class']['background-color'])?$user_style_sheet["wrt_menu_class"]["background-color"]:'';
     $wrt_menu_background_color_on_hover = isset($user_style_sheet['wrt_menu_class:hover']['background-color'])?$user_style_sheet["wrt_menu_class:hover"]["background-color"]:'';
@@ -13,7 +14,7 @@
     $wrt_menu_font_color = isset($user_style_sheet['wrt_menu_link_class']['color'])?$user_style_sheet["wrt_menu_link_class"]["color"]:'';
     $wrt_menu_font_size = isset($user_style_sheet['wrt_menu_link_class']['font-size'])?$user_style_sheet["wrt_menu_link_class"]["font-size"]:'';
 ?>
-<div class="wrt-theme-settings-page" style="margin">
+<div class="wrt-theme-settings-page">
     <div class="row">
         <div class="col-lg-12 col-sm-12 col-xs-12">
             <span>Hover properties will only work once all the properties are saved.</span>
@@ -30,19 +31,9 @@
                         <div class="row">
                             <?php
                                 echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Background color', $wrt_body_background_color, 'wrt_theme_body', 'background-color');
+                                echo $this->wrtGenerateHtmlTags_obj->generateFontSelectBox('Body font type', $wrt_body_font_family, 'wrt_theme_body', 'font-family');
+                                echo $this->wrtGenerateHtmlTags_obj->generateFontSelectBox('Heading font type', $wrt_heading_font_family, 'wrt_heading', 'font-family');
                             ?>
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="form-group">
-                                    <label for="inline">Font type</label>
-                                    <br/>
-                                    <span>(Current: <?php echo isset($user_style_sheet['wrt_theme_body']['font-family'])? stripcslashes($user_style_sheet["wrt_theme_body"]["font-family"]):'';?>)</span>
-                                    <br/>
-                                    <div id="fontSelect" class="fontSelect" target_class="wrt_theme_body" data-font-family="<?php echo isset($user_style_sheet['wrt_theme_body']['font-family'])? stripcslashes($user_style_sheet["wrt_theme_body"]["font-family"]):'';?>">
-                                        <div class="arrow-down"></div>
-                                    </div>
-                                    <input type="hidden" id="wrt_theme_body" name="wrt[wrt_theme_body][font-family]" value='<?php echo isset($user_style_sheet['wrt_theme_body']['font-family'])? stripcslashes($user_style_sheet["wrt_theme_body"]["font-family"]):'';?>'/>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

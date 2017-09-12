@@ -24,8 +24,10 @@ class wrtGenerateHtmlTags{
     public function geterateColorBox($label_name, $box_value, $class_name, $css_prop_name){
         return '<div class="col-lg-12 col-sm-12"><div class="form-group"><label for="'.$class_name.'_'.$css_prop_name.'">'.$label_name.'</label><br><input type="text" id="wrt_theme_body_background-color" name="wrt['.$class_name.']['.$css_prop_name.']" class="form-control demo"  data-classes="'.$class_name.'" data-prop="'.$css_prop_name.'" value="'.$box_value.'"></div></div>';
     }
+    public function generateFontSelectBox($label_name, $box_value, $class_name, $css_prop_name){
+        return '<div class="col-lg-12 col-sm-12"><div class="form-group"><label for="inline">'.$label_name.'</label><br/><span>(Current: '.$box_value.')</span><br/><div id="fontSelect" class="fontSelect" target_class="'.$class_name.'" data-font-family="'.$box_value.'"><div class="arrow-down"></div></div><input type="hidden" id="'.$class_name.'" name="wrt['.$class_name.']['.$css_prop_name.']" value="'.$box_value.'"/></div></div>';
+    }
     public function generateTextBox($label_name, $box_value, $class_name, $css_prop_name){
         return '<div class="col-lg-12 col-sm-12"><div class="form-group"><label for="'.$class_name.'_'.$css_prop_name.'">'.$label_name.'</label><br><input type="text" class="form-control text_field_css_prop" value="'.$box_value.'" id="'.$class_name.'_'.$css_prop_name.'" name="wrt['.$class_name.']['.$css_prop_name.']" data-classes="'.$class_name.'" data-prop="'.$css_prop_name.'"></div></div>';
     }
 }
-

@@ -7,6 +7,7 @@
 jQuery(document).ready(function () {
     jQuery('input').addClass('wrt_input_box');
     jQuery('header').addClass('wrt_header');
+    jQuery('h1, h2, h3, h4, h5, h6').addClass('wrt_heading');
     var font_families = [
             'Inherit',
             'Arial,Arial,Helvetica,sans-serif',
@@ -64,7 +65,7 @@ jQuery(document).ready(function () {
     });
 
     //For font-family dropdown
-    $('#fontSelect').fontSelector({
+    $('.fontSelect').fontSelector({
         'hide_fallbacks': true,
         'initial': $(this).attr('data-font-family'),
         'selected': function (style) {
