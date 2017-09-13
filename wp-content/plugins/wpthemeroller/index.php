@@ -103,9 +103,13 @@ register_activation_hook( __FILE__, array( 'wpThemeRoller', 'createWrtPluginPage
 register_deactivation_hook( __FILE__, array( 'wpThemeRoller', 'removeWrtPluginPages' ) );
 $am = new wpThemeRoller;
 
-function royal_custom_class($classes) {
-        global $post;
-                $classes[] = 'test_div_class'; // Add your class however its generated here
-            return $classes;
+function wpse_218377_nav_menu_css_class( $classes, $item, $args ) {
+    if ( ! empty( $args->theme_location ) && $args->theme_location === 'custom-menu' ) {
+        $classes[] = 'footer--menu-item';
     }
-    add_filter('post_class', 'royal_custom_class');
+
+    // ALWAYS return, not from inside the if
+    return $classes;
+}
+
+add_filter( 'nav_menu_css_class' , 'wpse_218377_nav_menu_css_class' , 10, 3 );

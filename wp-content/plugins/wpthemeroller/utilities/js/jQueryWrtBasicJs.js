@@ -8,6 +8,7 @@ jQuery(document).ready(function () {
     jQuery('input').addClass('wrt_input_box');
     jQuery('header').addClass('wrt_header');
     jQuery('h1, h2, h3, h4, h5, h6').addClass('wrt_heading');
+    jQuery('.site-content, .site-main').addClass('wrt_site_content');
     var font_families = [
             'Inherit',
             'Arial,Arial,Helvetica,sans-serif',
@@ -82,7 +83,4 @@ jQuery(document).ready(function () {
         },
         'fonts': font_families
     });
-
-    var x = $('body').find('#test-iframe').contents();
-          $(x).find('body').attr('oncontextmenu', 'return false');
 });

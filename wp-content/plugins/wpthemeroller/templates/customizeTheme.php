@@ -13,6 +13,13 @@
     $wrt_menu_border_color = isset($user_style_sheet['wrt_menu_class']['border-color'])?$user_style_sheet["wrt_menu_class"]["border-color"]:'';
     $wrt_menu_font_color = isset($user_style_sheet['wrt_menu_link_class']['color'])?$user_style_sheet["wrt_menu_link_class"]["color"]:'';
     $wrt_menu_font_size = isset($user_style_sheet['wrt_menu_link_class']['font-size'])?$user_style_sheet["wrt_menu_link_class"]["font-size"]:'';
+    
+    $wrt_widget_background_color = isset($user_style_sheet['widget']['background-color'])?$user_style_sheet["widget"]["background-color"]:'';
+    $wrt_widget_border_width = isset($user_style_sheet['widget']['border-width'])?$user_style_sheet["widget"]["border-width"]:'';
+    $wrt_widget_border_style = isset($user_style_sheet['widget']['border-style'])?$user_style_sheet["widget"]["border-style"]:'';
+    $wrt_widget_border_color = isset($user_style_sheet['widget']['border-color'])?$user_style_sheet["widget"]["border-color"]:'';
+    $wrt_widget_border_radius = isset($user_style_sheet['widget']['border-radius'])?$user_style_sheet["widget"]["border-radius"]:'';
+    $wrt_widget_title_background_color = isset($user_style_sheet['widget-title']['background-color'])?$user_style_sheet["widget-title"]["background-color"]:'';
 ?>
 <div class="wrt-theme-settings-page">
     <div class="row">
@@ -80,6 +87,24 @@
                 <div class="clearfix"></div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                        <h3 class="panel-title">Widget </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <?php 
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Widget title background color', $wrt_widget_title_background_color, 'widget-title', 'background-color');
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Widget background color', $wrt_widget_background_color, 'widget', 'background-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Widget border Width', $wrt_widget_border_width, 'widget', 'border-width');
+                            echo $this->wrtGenerateHtmlTags_obj->generateSelectBox('Widget border Style', $wrt_widget_border_style, 'widget', 'border-style', BORDERSTYLE);
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Widget border color', $wrt_widget_border_color, 'widget', 'border-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Widget border radius', $wrt_widget_border_radius, 'widget', 'border-radius');
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                         <h3 class="panel-title">Header and Footer</h3>
                     </div>
                     <div class="panel-body">
@@ -91,13 +116,6 @@
                                     <input type="text" id="wrt_header_background-color" name="wrt[wrt_header][background-color]" class="form-control demo"  data-classes="wrt_header" data-prop="background-color" value="<?php echo isset($user_style_sheet['wrt_header']['background-color'])?$user_style_sheet["wrt_header"]["background-color"]:'';?>">
                                 </div>
                             </div>
-<!--                            <div class="col-lg-12 col-sm-12">
-                                <div class="form-group">
-                                    <label for="text-field">Header Border Width</label>
-                                    <br>
-                                        <input type="text" class="form-control text_field_css_prop" value="<?php //echo isset($user_style_sheet['wrt_header']['border-width'])?$user_style_sheet["wrt_header"]["border-width"]:'';?>" id="wrt_header_border-width" name="wrt[wrt_menu_class][border-width]" data-classes="wrt_header" data-prop="border-width">
-                                </div>
-                            </div>-->
                             <div class="col-lg-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="wrt_menu_class_border-color">Header Border color</label>

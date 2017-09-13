@@ -15,7 +15,6 @@ class wrtUserStyleOperations {
             $style_sheet = $wrtDbOperations_obj->get_current_user_style_sheet();
             if (!empty($style_sheet)) {
                 $style_sheet = json_decode($style_sheet, true);
-                //echo '<pre>';print_r($style_sheet);die;
                 foreach ($style_sheet as $class_name => $styles) {
                     $user_custom_style .= ".{$class_name}{";
                     foreach ($styles as $style_prop => $style_prop_value) {

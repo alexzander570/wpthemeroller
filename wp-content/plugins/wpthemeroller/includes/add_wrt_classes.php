@@ -19,7 +19,7 @@ class addWrtClasses {
 
     public function addClassesFilters() {
         add_filter('body_class', array($this, 'wrtAddBodyClass'));
-        add_filter('nav_menu_css_class', array($this, 'custom_nav_class'));
+        add_filter('nav_menu_css_class', array($this, 'custom_nav_class'), 10, 2);
         add_filter('nav_menu_link_attributes', array($this, 'wrt_nav_menu_link_atts'), 10, 4);
     }
 
@@ -30,7 +30,7 @@ class addWrtClasses {
 
     function custom_nav_class($classes) {
 
-        if (in_array('current-menu-item', $classes) || in_array('current_page_item', $classes)) {
+        if (in_array('current-menu-item', $classes)) {
             $classes[] = "wrt_current_menu_class";
         } else {
             $classes[] = "wrt_menu_class";
