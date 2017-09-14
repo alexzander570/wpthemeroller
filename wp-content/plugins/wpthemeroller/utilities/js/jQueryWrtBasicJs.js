@@ -5,8 +5,10 @@
  */
 
 jQuery(document).ready(function () {
+    $('.wrt_customize_button').tooltip();
     jQuery('input').addClass('wrt_input_box');
     jQuery('header').addClass('wrt_header');
+    jQuery('footer').addClass('wrt_footer');
     jQuery('h1, h2, h3, h4, h5, h6').addClass('wrt_heading');
     jQuery('.site-content, .site-main').addClass('wrt_site_content');
     var font_families = [

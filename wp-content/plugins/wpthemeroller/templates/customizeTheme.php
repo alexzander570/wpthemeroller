@@ -20,6 +20,12 @@
     $wrt_widget_border_color = isset($user_style_sheet['widget']['border-color'])?$user_style_sheet["widget"]["border-color"]:'';
     $wrt_widget_border_radius = isset($user_style_sheet['widget']['border-radius'])?$user_style_sheet["widget"]["border-radius"]:'';
     $wrt_widget_title_background_color = isset($user_style_sheet['widget-title']['background-color'])?$user_style_sheet["widget-title"]["background-color"]:'';
+    
+    $wrt_header_background_color = isset($user_style_sheet['wrt_header']['background-color'])?$user_style_sheet["wrt_header"]["background-color"]:'';
+    $wrt_header_border_width = isset($user_style_sheet['wrt_header']['border-width'])?$user_style_sheet["wrt_header"]["border-width"]:'';    
+    $wrt_header_border_color = isset($user_style_sheet['wrt_header']['border-color'])?$user_style_sheet["wrt_header"]["border-color"]:'';
+    $wrt_header_border_style = isset($user_style_sheet['wrt_header']['border-style'])?$user_style_sheet["wrt_header"]["border-style"]:'';
+    $wrt_header_border_radius = isset($user_style_sheet['wrt_header']['border-radius'])?$user_style_sheet["wrt_header"]["border-radius"]:'';
 ?>
 <div class="wrt-theme-settings-page">
     <div class="row">
@@ -93,6 +99,7 @@
                         <div class="row">
                             <?php 
                             echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Widget title background color', $wrt_widget_title_background_color, 'widget-title', 'background-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Widget title border radius', $wrt_widget_title_border_radius, 'widget-title', 'border-radius');
                             echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Widget background color', $wrt_widget_background_color, 'widget', 'background-color');
                             echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Widget border Width', $wrt_widget_border_width, 'widget', 'border-width');
                             echo $this->wrtGenerateHtmlTags_obj->generateSelectBox('Widget border Style', $wrt_widget_border_style, 'widget', 'border-style', BORDERSTYLE);
@@ -109,27 +116,30 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="form-group">
-                                    <label for="text-field">Header Background color</label>
-                                    <br>
-                                    <input type="text" id="wrt_header_background-color" name="wrt[wrt_header][background-color]" class="form-control demo"  data-classes="wrt_header" data-prop="background-color" value="<?php echo isset($user_style_sheet['wrt_header']['background-color'])?$user_style_sheet["wrt_header"]["background-color"]:'';?>">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="form-group">
-                                    <label for="wrt_menu_class_border-color">Header Border color</label>
-                                    <br>
-                                    <input type="text" class="form-control demo" value="<?php echo isset($user_style_sheet['wrt_header']['border-color'])?$user_style_sheet["wrt_header"]["border-color"]:'';?>" id="wrt_header_border-color" name="wrt[wrt_header][border-color]" data-classes="wrt_header" data-prop="border-color">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="form-group">
-                                    <label for="wrt_menu_class_border-radius">Header Border radius</label>
-                                    <br>
-                                        <input type="text" class="form-control text_field_css_prop" value="<?php echo isset($user_style_sheet['wrt_header']['border-radius'])?$user_style_sheet["wrt_header"]["border-radius"]:'';?>" id="wrt_header_border-radius" name="wrt[wrt_header][border-radius]" data-classes="wrt_header" data-prop="border-radius">
-                                </div>
-                            </div>
+                            <?php 
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Header Background color', $wrt_header_background_color, 'wrt_header', 'background-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Header border width', $wrt_header_border_width, 'wrt_header', 'border-width');
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Header Border color', $wrt_header_border_color, 'wrt_header', 'border-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateSelectBox('Header border Style', $wrt_header_border_style, 'wrt_header', 'border-style', BORDERSTYLE);
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Header border radius', $wrt_header_border_radius, 'wrt_header', 'border-radius');
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Site Content</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <?php 
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Background color', $wrt_header_background_color, 'wrt_site_content', 'background-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border width', $wrt_header_border_width, 'wrt_site_content', 'border-width');
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Border color', $wrt_header_border_color, 'wrt_site_content', 'border-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateSelectBox('Border Style', $wrt_header_border_style, 'wrt_site_content', 'border-style', BORDERSTYLE);
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border radius', $wrt_header_border_radius, 'wrt_site_content', 'border-radius');
+                            ?>
                         </div>
                     </div>
                 </div>

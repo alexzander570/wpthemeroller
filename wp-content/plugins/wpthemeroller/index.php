@@ -25,6 +25,7 @@ class wpThemeRoller{
         add_action( 'wp_loaded', array($this, 'register_all_scripts'));
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueueStylesAndScripts' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'adminEnqueueStylesAndScripts' ) );
+        add_action( 'wp_footer', array($this, 'theme_settings_button'));
     }
     function register_all_scripts(){
         wp_register_script('jQuery', plugins_url('utilities/js/jquery-3.2.1.min.js', __FILE__), null, null);
@@ -37,7 +38,8 @@ class wpThemeRoller{
         wp_register_style('bootstrapCss', plugins_url('utilities/css/bootstrap.min.css', __FILE__), null, '1.0', null);
         wp_register_style('bootstrapRebootCss', plugins_url('utilities/css/bootstrap-theme.min.css', __FILE__), null, '1.0', null);
         wp_register_style('fontselector', plugins_url('utilities/css/fontselector.css', __FILE__), null, '1.0', null);
-        wp_register_style('wrt_custom_style', plugins_url('utilities/css/wrt_style.css', __FILE__), null, '1.0', null);
+        wp_register_style('wrt_custom_style', plugins_url('utilities/css/wrt_dummy_style.css', __FILE__), null, '1.0', null);
+        wp_register_style('wrt_style', plugins_url('utilities/css/wrt_style.css', __FILE__), null, '1.0', null);
     }
     function adminEnqueueStylesAndScripts(){
         wp_enqueue_script('jQuery');
@@ -49,6 +51,7 @@ class wpThemeRoller{
         wp_enqueue_style('bootstrapCss');
         wp_enqueue_style('bootstrapRebootCss');
         wp_enqueue_style('fontselector');
+        wp_enqueue_style('wrt_style');
         wp_enqueue_style('wrt_custom_style');
     }
     function AddAdminMenu() {
@@ -69,6 +72,7 @@ class wpThemeRoller{
         wp_enqueue_style('bootstrapRebootCss');
         wp_enqueue_style('fontselector');
         wp_enqueue_style('wrt_custom_style');
+        wp_enqueue_style('wrt_style');
     }
     public function includeFiles(){
         include_once 'includes/wrt_db_operations.php';
@@ -97,19 +101,15 @@ class wpThemeRoller{
     public function addFilters(){
         
     }
+    
+    function theme_settings_button(){
+        if(is_user_logged_in() && !is_page('wrt-demo-page')){
+            echo '<div class="wrt_customize_button" ittle="Customize site" data-placement="left"><a href="'. get_permalink(get_page_by_path('theme-settings')).'">Customize</a></div>';
+        }
+    }
 }
 
 register_activation_hook( __FILE__, array( 'wpThemeRoller', 'createWrtPluginPages' ) );
 register_deactivation_hook( __FILE__, array( 'wpThemeRoller', 'removeWrtPluginPages' ) );
 $am = new wpThemeRoller;
-
-function wpse_218377_nav_menu_css_class( $classes, $item, $args ) {
-    if ( ! empty( $args->theme_location ) && $args->theme_location === 'custom-menu' ) {
-        $classes[] = 'footer--menu-item';
-    }
-
-    // ALWAYS return, not from inside the if
-    return $classes;
-}
-
-add_filter( 'nav_menu_css_class' , 'wpse_218377_nav_menu_css_class' , 10, 3 );
+//<img src="'.plugins_url('utilities/images/customize_icon.png', __FILE__).'"/>
