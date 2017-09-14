@@ -67,6 +67,17 @@ jQuery(document).ready(function () {
         jQuery('#test-iframe').contents().find(classes).attr('style', test_ifram_style+data_prop+': '+ text_field_css_prop_val+'!important;');
     });
 
+    jQuery('body').on('change', '.select_box_css_prop', function(){
+        var classes = '.'+jQuery(this).attr('data-classes');
+        var data_prop = jQuery(this).attr('data-prop');
+        var text_field_css_prop_val = jQuery(this).val();
+        var test_ifram_style = jQuery('#test-iframe').contents().find(classes).attr('style');
+        if(typeof(test_ifram_style) === undefined || typeof(test_ifram_style) === 'undefined'){
+            test_ifram_style = '';
+        }
+        jQuery('#test-iframe').contents().find(classes).attr('style', test_ifram_style+data_prop+': '+ text_field_css_prop_val+'!important;');
+    });
+    
     //For font-family dropdown
     $('.fontSelect').fontSelector({
         'hide_fallbacks': true,

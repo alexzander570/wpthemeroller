@@ -26,6 +26,12 @@
     $wrt_header_border_color = isset($user_style_sheet['wrt_header']['border-color'])?$user_style_sheet["wrt_header"]["border-color"]:'';
     $wrt_header_border_style = isset($user_style_sheet['wrt_header']['border-style'])?$user_style_sheet["wrt_header"]["border-style"]:'';
     $wrt_header_border_radius = isset($user_style_sheet['wrt_header']['border-radius'])?$user_style_sheet["wrt_header"]["border-radius"]:'';
+    
+    $wrt_site_content_background_color = isset($user_style_sheet['wrt_site_content']['background-color'])?$user_style_sheet["wrt_site_content"]["background-color"]:'';
+    $wrt_site_content_border_width = isset($user_style_sheet['wrt_site_content']['border-width'])?$user_style_sheet["wrt_site_content"]["border-width"]:'';    
+    $wrt_site_content_border_color = isset($user_style_sheet['wrt_site_content']['border-color'])?$user_style_sheet["wrt_site_content"]["border-color"]:'';
+    $wrt_site_content_border_style = isset($user_style_sheet['wrt_site_content']['border-style'])?$user_style_sheet["wrt_site_content"]["border-style"]:'';
+    $wrt_site_content_border_radius = isset($user_style_sheet['wrt_site_content']['border-radius'])?$user_style_sheet["wrt_site_content"]["border-radius"]:'';
 ?>
 <div class="wrt-theme-settings-page">
     <div class="row">
@@ -134,11 +140,11 @@
                     <div class="panel-body">
                         <div class="row">
                             <?php 
-                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Background color', $wrt_header_background_color, 'wrt_site_content', 'background-color');
-                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border width', $wrt_header_border_width, 'wrt_site_content', 'border-width');
-                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Border color', $wrt_header_border_color, 'wrt_site_content', 'border-color');
-                            echo $this->wrtGenerateHtmlTags_obj->generateSelectBox('Border Style', $wrt_header_border_style, 'wrt_site_content', 'border-style', BORDERSTYLE);
-                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border radius', $wrt_header_border_radius, 'wrt_site_content', 'border-radius');
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Background color', $wrt_site_content_background_color, 'wrt_site_content', 'background-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border width', $wrt_site_content_border_width, 'wrt_site_content', 'border-width');
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Border color', $wrt_site_content_border_color, 'wrt_site_content', 'border-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateSelectBox('Border Style', $wrt_site_content_border_style, 'wrt_site_content', 'border-style', BORDERSTYLE);
+                            echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border radius', $wrt_site_content_border_radius, 'wrt_site_content', 'border-radius');
                             ?>
                         </div>
                     </div>
