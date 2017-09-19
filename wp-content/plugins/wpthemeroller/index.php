@@ -8,8 +8,17 @@
 * Author URI: 
 */
 
-define ("FONTWEIGHT", serialize (array ("Normal", "100", "200", "300", "400", "500", "600", "700", "800", "900", "Bold", "Bolder", "Lighter")));
-define ("BORDERSTYLE", serialize (array ("none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "initial", "inherit")));
+define ("FONTWEIGHT", serialize (array ("Select","Normal", "100", "200", "300", "400", "500", "600", "700", "800", "900", "Bold", "Bolder", "Lighter")));
+define ("FONTFAMILY", serialize (array('Select', 'Georgia, serif', '"Palatino Linotype", "Book Antiqua", Palatino, serif', '"Times New Roman", Times, serif', 'Arial, Helvetica, sans-serif', '"Arial Black", Gadget, sans-serif', '"Comic Sans MS", cursive, sans-serif', 'Impact, Charcoal, sans-serif', '"Lucida Sans Unicode", "Lucida Grande", sans-serif', 'Tahoma, Geneva, sans-serif', '"Trebuchet MS", Helvetica, sans-serif', 'Verdana, Geneva, sans-serif', '"Courier New", Courier, monospace', '"Lucida Console", Monaco, monospace')));
+define ("BORDERSTYLE", serialize (array ("Select", "none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "initial", "inherit")));
+define("DISPLAYTYPE", serialize(array("Select","none", "inline", "block", "inline-block","flex", "inline-flex", "inline-table", "list-item", "run-in", "table","table-caption","table-column-group","table-header-group","table-footer-group","table-row-group","table-cell","table-column","table-row","initial","inherit")));
+
+define("FLOAT", serialize(array("Select", "left", "right", "none")));
+
+define("TEXTALIGN", serialize(array("Select", "left", "right", "justify", "center")));
+define("TEXTDECORATION", serialize(array("Select", "none", "underline", "overline", "line-through", "blink")));
+define("TEXTTRANSFORM", serialize(array("Select", "none", "capitalize", "uppercase", "lowercase")));
+
 
 class wpThemeRoller{
     function __construct(){
@@ -29,26 +38,33 @@ class wpThemeRoller{
     }
     function register_all_scripts(){
         wp_register_script('jQuery', plugins_url('utilities/js/jquery-3.2.1.min.js', __FILE__), null, null);
+        wp_register_script('jQueryUi', plugins_url('utilities/js/jquery-ui.min.js', __FILE__), array('jQuery'), null);
         wp_register_script('colorPickerJs', plugins_url('utilities/js/jquery.minicolors.min.js', __FILE__), array('jQuery'), null, null);
-        wp_register_script('fontPickerJs', plugins_url('utilities/js/jquery.fontselector.js', __FILE__), array('jQuery'), null, null);
+        wp_register_script('fontPickerJs', plugins_url('utilities/js/jquery.fontselect.js', __FILE__), array('jQuery'), null, null);
         wp_register_script('bootstrapJs', plugins_url('utilities/js/bootstrap.min.js', __FILE__), array('jQuery'), null, null);
         wp_register_script('WrtBasicJs', plugins_url('utilities/js/jQueryWrtBasicJs.js', __FILE__),array('jQuery', 'colorPickerJs', 'fontPickerJs'), null, null);
         
+        wp_register_style('jqueryUiCss', plugins_url('utilities/css/jquery-ui.min.css', __FILE__), null, '1.0', null);
         wp_register_style('colorPickerCss', plugins_url('utilities/css/jquery.minicolors.css', __FILE__), null, '1.0', null);
         wp_register_style('bootstrapCss', plugins_url('utilities/css/bootstrap.min.css', __FILE__), null, '1.0', null);
+        wp_register_style('bootstrapCssMap', plugins_url('utilities/css/bootstrap.min.css.map', __FILE__), null, '1.0', null);
         wp_register_style('bootstrapRebootCss', plugins_url('utilities/css/bootstrap-theme.min.css', __FILE__), null, '1.0', null);
-        wp_register_style('fontselector', plugins_url('utilities/css/fontselector.css', __FILE__), null, '1.0', null);
+        wp_register_style('fontselector', plugins_url('utilities/css/fontselect.css', __FILE__), null, '1.0', null);
         wp_register_style('wrt_custom_style', plugins_url('utilities/css/wrt_dummy_style.css', __FILE__), null, '1.0', null);
         wp_register_style('wrt_style', plugins_url('utilities/css/wrt_style.css', __FILE__), null, '1.0', null);
     }
     function adminEnqueueStylesAndScripts(){
         wp_enqueue_script('jQuery');
+        wp_enqueue_script('jQueryUi');
         wp_enqueue_script('colorPickerJs');
         wp_enqueue_script('fontPickerJs');
         wp_enqueue_script('bootstrapJs');
         wp_enqueue_script('WrtBasicJs');
+        wp_localize_script( 'WrtBasicJs', 'ajaxobj', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'siteurl' =>site_url() ) );
+        wp_enqueue_style('jqueryUiCss');
         wp_enqueue_style('colorPickerCss');
         wp_enqueue_style('bootstrapCss');
+        wp_enqueue_style('bootstrapCssMap');
         wp_enqueue_style('bootstrapRebootCss');
         wp_enqueue_style('fontselector');
         wp_enqueue_style('wrt_style');
@@ -62,13 +78,17 @@ class wpThemeRoller{
    
     public function enqueueStylesAndScripts(){
         wp_enqueue_script('jQuery');
+        wp_enqueue_script('jQueryUi');
         wp_enqueue_script('colorPickerJs');
         wp_enqueue_script('fontPickerJs');
         wp_enqueue_script('bootstrapJs');
         wp_enqueue_script('WrtBasicJs');
+        wp_localize_script( 'WrtBasicJs', 'ajaxobj', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
         
+        wp_enqueue_style('jqueryUiCss');
         wp_enqueue_style('colorPickerCss');
         wp_enqueue_style('bootstrapCss');
+        wp_enqueue_style('bootstrapCssMap');
         wp_enqueue_style('bootstrapRebootCss');
         wp_enqueue_style('fontselector');
         wp_enqueue_style('wrt_custom_style');
@@ -84,8 +104,8 @@ class wpThemeRoller{
     }
     static function createWrtPluginPages(){
         $wrtPageOperations_obj = new wrtPageOperations();
-        $wrtPageOperations_obj->create_plugin_pages('Theme Settings', 'theme-settings' );
-        $wrtPageOperations_obj->create_plugin_pages('WRT Demo Page', 'wrt-demo-page' );
+        $wrtPageOperations_obj->create_plugin_pages('Theme Settings', 'theme-settings', '', 'Full-Width' );
+        $wrtPageOperations_obj->create_plugin_pages('WRT Demo Page', 'wrt-demo-page', '', 'Full-Width' );
     }
     static function removeWrtPluginPages(){
         $wrtPageOperations_obj = new wrtPageOperations();
@@ -94,7 +114,7 @@ class wpThemeRoller{
     }
     function addShortcodes(){
         $wrt_short_code_page_obj = new wrtShortCodePages();
-        add_shortcode( 'theme-settings' , array($wrt_short_code_page_obj, 'wrtThemeCustomizer') );
+        add_shortcode( 'theme-settings' , array($wrt_short_code_page_obj, 'wrtCssProperties') );
         add_shortcode( 'wrt-demo-page' , array($wrt_short_code_page_obj, 'wrtDemoPage') );
     }
     
@@ -104,7 +124,7 @@ class wpThemeRoller{
     
     function theme_settings_button(){
         if(is_user_logged_in() && !is_page('wrt-demo-page')){
-            echo '<div class="wrt_customize_button" ittle="Customize site" data-placement="left"><a href="'. get_permalink(get_page_by_path('theme-settings')).'">Customize</a></div>';
+            echo '<div class="wrt_customize_button" title="Customize site" data-placement="left"><a href="'. get_permalink(get_page_by_path('theme-settings')).'">Customize</a></div>';
         }
     }
 }
@@ -112,4 +132,3 @@ class wpThemeRoller{
 register_activation_hook( __FILE__, array( 'wpThemeRoller', 'createWrtPluginPages' ) );
 register_deactivation_hook( __FILE__, array( 'wpThemeRoller', 'removeWrtPluginPages' ) );
 $am = new wpThemeRoller;
-//<img src="'.plugins_url('utilities/images/customize_icon.png', __FILE__).'"/>

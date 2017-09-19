@@ -1,37 +1,37 @@
 <?php
-    $wrt_body_background_color = isset($user_style_sheet['wrt_theme_body']['background-color'])?$user_style_sheet["wrt_theme_body"]["background-color"]:'';
-    $wrt_body_font_family = isset($user_style_sheet['wrt_theme_body']['font-family'])? stripcslashes($user_style_sheet["wrt_theme_body"]["font-family"]):'';
-    $wrt_heading_font_family = isset($user_style_sheet['wrt_heading']['font-family'])? stripcslashes($user_style_sheet["wrt_heading"]["font-family"]):'';
-    
-    $wrt_menu_background_color = isset($user_style_sheet['wrt_menu_class']['background-color'])?$user_style_sheet["wrt_menu_class"]["background-color"]:'';
-    $wrt_menu_background_color_on_hover = isset($user_style_sheet['wrt_menu_class:hover']['background-color'])?$user_style_sheet["wrt_menu_class:hover"]["background-color"]:'';
-    $wrt_active_menu_background_color = isset($user_style_sheet['wrt_menu_class:hover']['background-color'])?$user_style_sheet["wrt_menu_class:hover"]["background-color"]:'';
-    $wrt_active_menu_background_color_on_hover = isset($user_style_sheet['wrt_current_menu_class:hover']['background-color'])?$user_style_sheet["wrt_current_menu_class:hover"]["background-color"]:'';
-    $wrt_menu_border_width = isset($user_style_sheet['wrt_menu_class']['border-width'])?$user_style_sheet["wrt_menu_class"]["border-width"]:0;
-    $wrt_menu_border_style = isset($user_style_sheet['wrt_menu_class']['border-style'])?$user_style_sheet["wrt_menu_class"]["border-style"]:'';
-    $wrt_menu_border_radius = isset($user_style_sheet['wrt_menu_class']['border-radius'])?$user_style_sheet["wrt_menu_class"]["border-radius"]:0;
-    $wrt_menu_border_color = isset($user_style_sheet['wrt_menu_class']['border-color'])?$user_style_sheet["wrt_menu_class"]["border-color"]:'';
-    $wrt_menu_font_color = isset($user_style_sheet['wrt_menu_link_class']['color'])?$user_style_sheet["wrt_menu_link_class"]["color"]:'';
-    $wrt_menu_font_size = isset($user_style_sheet['wrt_menu_link_class']['font-size'])?$user_style_sheet["wrt_menu_link_class"]["font-size"]:'';
-    
-    $wrt_widget_background_color = isset($user_style_sheet['widget']['background-color'])?$user_style_sheet["widget"]["background-color"]:'';
-    $wrt_widget_border_width = isset($user_style_sheet['widget']['border-width'])?$user_style_sheet["widget"]["border-width"]:'';
-    $wrt_widget_border_style = isset($user_style_sheet['widget']['border-style'])?$user_style_sheet["widget"]["border-style"]:'';
-    $wrt_widget_border_color = isset($user_style_sheet['widget']['border-color'])?$user_style_sheet["widget"]["border-color"]:'';
-    $wrt_widget_border_radius = isset($user_style_sheet['widget']['border-radius'])?$user_style_sheet["widget"]["border-radius"]:'';
-    $wrt_widget_title_background_color = isset($user_style_sheet['widget-title']['background-color'])?$user_style_sheet["widget-title"]["background-color"]:'';
-    
-    $wrt_header_background_color = isset($user_style_sheet['wrt_header']['background-color'])?$user_style_sheet["wrt_header"]["background-color"]:'';
-    $wrt_header_border_width = isset($user_style_sheet['wrt_header']['border-width'])?$user_style_sheet["wrt_header"]["border-width"]:'';    
-    $wrt_header_border_color = isset($user_style_sheet['wrt_header']['border-color'])?$user_style_sheet["wrt_header"]["border-color"]:'';
-    $wrt_header_border_style = isset($user_style_sheet['wrt_header']['border-style'])?$user_style_sheet["wrt_header"]["border-style"]:'';
-    $wrt_header_border_radius = isset($user_style_sheet['wrt_header']['border-radius'])?$user_style_sheet["wrt_header"]["border-radius"]:'';
-    
-    $wrt_site_content_background_color = isset($user_style_sheet['wrt_site_content']['background-color'])?$user_style_sheet["wrt_site_content"]["background-color"]:'';
-    $wrt_site_content_border_width = isset($user_style_sheet['wrt_site_content']['border-width'])?$user_style_sheet["wrt_site_content"]["border-width"]:'';    
-    $wrt_site_content_border_color = isset($user_style_sheet['wrt_site_content']['border-color'])?$user_style_sheet["wrt_site_content"]["border-color"]:'';
-    $wrt_site_content_border_style = isset($user_style_sheet['wrt_site_content']['border-style'])?$user_style_sheet["wrt_site_content"]["border-style"]:'';
-    $wrt_site_content_border_radius = isset($user_style_sheet['wrt_site_content']['border-radius'])?$user_style_sheet["wrt_site_content"]["border-radius"]:'';
+$wrt_body_background_color = isset($user_style_sheet['wrt_theme_body']['background-color']) ? $user_style_sheet["wrt_theme_body"]["background-color"] : '';
+$wrt_body_font_family = isset($user_style_sheet['wrt_theme_body']['font-family']) ? stripcslashes($user_style_sheet["wrt_theme_body"]["font-family"]) : '';
+$wrt_heading_font_family = isset($user_style_sheet['wrt_heading']['font-family']) ? stripcslashes($user_style_sheet["wrt_heading"]["font-family"]) : '';
+
+$wrt_menu_background_color = isset($user_style_sheet['wrt_menu_class']['background-color']) ? $user_style_sheet["wrt_menu_class"]["background-color"] : '';
+$wrt_menu_background_color_on_hover = isset($user_style_sheet['wrt_menu_class:hover']['background-color']) ? $user_style_sheet["wrt_menu_class:hover"]["background-color"] : '';
+$wrt_active_menu_background_color = isset($user_style_sheet['wrt_menu_class:hover']['background-color']) ? $user_style_sheet["wrt_menu_class:hover"]["background-color"] : '';
+$wrt_active_menu_background_color_on_hover = isset($user_style_sheet['wrt_current_menu_class:hover']['background-color']) ? $user_style_sheet["wrt_current_menu_class:hover"]["background-color"] : '';
+$wrt_menu_border_width = isset($user_style_sheet['wrt_menu_class']['border-width']) ? $user_style_sheet["wrt_menu_class"]["border-width"] : 0;
+$wrt_menu_border_style = isset($user_style_sheet['wrt_menu_class']['border-style']) ? $user_style_sheet["wrt_menu_class"]["border-style"] : '';
+$wrt_menu_border_radius = isset($user_style_sheet['wrt_menu_class']['border-radius']) ? $user_style_sheet["wrt_menu_class"]["border-radius"] : 0;
+$wrt_menu_border_color = isset($user_style_sheet['wrt_menu_class']['border-color']) ? $user_style_sheet["wrt_menu_class"]["border-color"] : '';
+$wrt_menu_font_color = isset($user_style_sheet['wrt_menu_link_class']['color']) ? $user_style_sheet["wrt_menu_link_class"]["color"] : '';
+$wrt_menu_font_size = isset($user_style_sheet['wrt_menu_link_class']['font-size']) ? $user_style_sheet["wrt_menu_link_class"]["font-size"] : '';
+
+$wrt_widget_background_color = isset($user_style_sheet['widget']['background-color']) ? $user_style_sheet["widget"]["background-color"] : '';
+$wrt_widget_border_width = isset($user_style_sheet['widget']['border-width']) ? $user_style_sheet["widget"]["border-width"] : '';
+$wrt_widget_border_style = isset($user_style_sheet['widget']['border-style']) ? $user_style_sheet["widget"]["border-style"] : '';
+$wrt_widget_border_color = isset($user_style_sheet['widget']['border-color']) ? $user_style_sheet["widget"]["border-color"] : '';
+$wrt_widget_border_radius = isset($user_style_sheet['widget']['border-radius']) ? $user_style_sheet["widget"]["border-radius"] : '';
+$wrt_widget_title_background_color = isset($user_style_sheet['widget-title']['background-color']) ? $user_style_sheet["widget-title"]["background-color"] : '';
+
+$wrt_header_background_color = isset($user_style_sheet['wrt_header']['background-color']) ? $user_style_sheet["wrt_header"]["background-color"] : '';
+$wrt_header_border_width = isset($user_style_sheet['wrt_header']['border-width']) ? $user_style_sheet["wrt_header"]["border-width"] : '';
+$wrt_header_border_color = isset($user_style_sheet['wrt_header']['border-color']) ? $user_style_sheet["wrt_header"]["border-color"] : '';
+$wrt_header_border_style = isset($user_style_sheet['wrt_header']['border-style']) ? $user_style_sheet["wrt_header"]["border-style"] : '';
+$wrt_header_border_radius = isset($user_style_sheet['wrt_header']['border-radius']) ? $user_style_sheet["wrt_header"]["border-radius"] : '';
+
+$wrt_site_content_background_color = isset($user_style_sheet['wrt_site_content']['background-color']) ? $user_style_sheet["wrt_site_content"]["background-color"] : '';
+$wrt_site_content_border_width = isset($user_style_sheet['wrt_site_content']['border-width']) ? $user_style_sheet["wrt_site_content"]["border-width"] : '';
+$wrt_site_content_border_color = isset($user_style_sheet['wrt_site_content']['border-color']) ? $user_style_sheet["wrt_site_content"]["border-color"] : '';
+$wrt_site_content_border_style = isset($user_style_sheet['wrt_site_content']['border-style']) ? $user_style_sheet["wrt_site_content"]["border-style"] : '';
+$wrt_site_content_border_radius = isset($user_style_sheet['wrt_site_content']['border-radius']) ? $user_style_sheet["wrt_site_content"]["border-radius"] : '';
 ?>
 <div class="wrt-theme-settings-page">
     <div class="row">
@@ -49,9 +49,9 @@
                     <div class="panel-body">
                         <div class="row">
                             <?php
-                                echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Background color', $wrt_body_background_color, 'wrt_theme_body', 'background-color');
-                                echo $this->wrtGenerateHtmlTags_obj->generateFontSelectBox('Body font type', $wrt_body_font_family, 'wrt_theme_body', 'font-family');
-                                echo $this->wrtGenerateHtmlTags_obj->generateFontSelectBox('Heading font type', $wrt_heading_font_family, 'wrt_heading', 'font-family');
+                            echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Background color', $wrt_body_background_color, 'wrt_theme_body', 'background-color');
+                            echo $this->wrtGenerateHtmlTags_obj->generateFontSelectBox('Body font type', $wrt_body_font_family, 'wrt_theme_body', 'font-family');
+                            echo $this->wrtGenerateHtmlTags_obj->generateFontSelectBox('Heading font type', $wrt_heading_font_family, 'wrt_heading', 'font-family');
                             ?>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                 <div class="form-group">
                                     <label for="text-field">Background color</label>
                                     <br>
-                                    <input type="text" id="wrt_input_box_background-color" name="wrt[wrt_input_box][background-color]" class="form-control demo"  data-classes="wrt_input_box" data-prop="background-color" value="<?php echo isset($user_style_sheet['wrt_input_box']['background-color'])?$user_style_sheet["wrt_input_box"]["background-color"]:'';?>">
+                                    <input type="text" id="wrt_input_box_background-color" name="wrt[wrt_input_box][background-color]" class="form-control demo"  data-classes="wrt_input_box" data-prop="background-color" value="<?php echo isset($user_style_sheet['wrt_input_box']['background-color']) ? $user_style_sheet["wrt_input_box"]["background-color"] : ''; ?>">
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <?php 
+                            <?php
                             echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Widget title background color', $wrt_widget_title_background_color, 'widget-title', 'background-color');
                             echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Widget title border radius', $wrt_widget_title_border_radius, 'widget-title', 'border-radius');
                             echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Widget background color', $wrt_widget_background_color, 'widget', 'background-color');
@@ -122,7 +122,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <?php 
+                            <?php
                             echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Header Background color', $wrt_header_background_color, 'wrt_header', 'background-color');
                             echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Header border width', $wrt_header_border_width, 'wrt_header', 'border-width');
                             echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Header Border color', $wrt_header_border_color, 'wrt_header', 'border-color');
@@ -139,7 +139,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <?php 
+                            <?php
                             echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Background color', $wrt_site_content_background_color, 'wrt_site_content', 'background-color');
                             echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border width', $wrt_site_content_border_width, 'wrt_site_content', 'border-width');
                             echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Border color', $wrt_site_content_border_color, 'wrt_site_content', 'border-color');

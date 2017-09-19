@@ -1,33 +1,45 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-class wrtGenerateHtmlTags{
-    public function generateSelectBox($label_name, $box_value, $class_name, $css_prop_name, $serialized_data){
+class wrtGenerateHtmlTags {
+
+    public function generateSelectBox($label_name, $css_prop_name, $serialized_data, $prop_for='') {
         $select_box_options = unserialize($serialized_data);
         $selected = '';
-        $select_box = '<div class="col-lg-12 col-sm-12"><div class="form-group"><label for="text-field">'.$label_name.'</label><br><select class="form-control select_box_css_prop" data-classes="'.$class_name.'" data-prop="'.$css_prop_name.'" name="wrt['.$class_name.']['.$css_prop_name.']">';
-        foreach($select_box_options as $value){
-            $selected = '';
-            if($box_value == $value){
-                $selected = 'selected';
-            }
-            $select_box .= "<option value='".$value."' {$selected}>".ucfirst($value)."</option>";
+        $hover_active = '';
+        if($prop_for == 'hover'){
+            $hover_active = 'hover';
         }
-        $select_box .= '</select></div></div>';
+        $select_box = '<div class="form-group"><label for="text-field">' . $label_name . '</label><br /><select class="form-control select_box_css_prop" data-prop="' . $css_prop_name . '" id="' . $css_prop_name . '" " data-propfor="'.$hover_active.'">';
+        foreach ($select_box_options as $value) {
+            $option_value = $value;
+            if($value == 'Select')
+                $option_value = '';
+        $select_box .= "<option value='{$option_value}' >" . ucfirst($value) . "</option>";
+        }
+        $select_box .= '</select></div>';
         return $select_box;
     }
-    public function geterateColorBox($label_name, $box_value, $class_name, $css_prop_name){
-        return '<div class="col-lg-12 col-sm-12"><div class="form-group"><label for="'.$class_name.'_'.$css_prop_name.'">'.$label_name.'</label><br><input type="text" id="wrt_theme_body_background-color" name="wrt['.$class_name.']['.$css_prop_name.']" class="form-control demo"  data-classes="'.$class_name.'" data-prop="'.$css_prop_name.'" value="'.$box_value.'"></div></div>';
+
+    public function geterateColorBox($label_name, $css_prop_name, $prop_for='') {
+        $hover_active = '';
+        if($prop_for == 'hover'){
+            $hover_active = 'hover';
+        }
+        return '<div class="form-group"><label for="' . $css_prop_name . '">' . $label_name . '</label><br /><input type="text" id="'.$css_prop_name.'" class="form-control demo" data-prop="'.$css_prop_name.'" data-propfor="'.$hover_active.'"/></div>';
     }
-    public function generateFontSelectBox($label_name, $box_value, $class_name, $css_prop_name){
-        return '<div class="col-lg-12 col-sm-12"><div class="form-group"><label for="inline">'.$label_name.'</label><br/><span>(Current: '.$box_value.')</span><br/><div id="fontSelect" class="fontSelect" target_class="'.$class_name.'" data-font-family="'.$box_value.'"><div class="arrow-down"></div></div><input type="hidden" id="'.$class_name.'" name="wrt['.$class_name.']['.$css_prop_name.']" value="'.$box_value.'"/></div></div>';
+
+    public function generateFontSelectBox($label_name, $css_prop_name) {
+        return '<div class="form-group"><label for="inline">' . $label_name . '</label><br/><input type="text" id="'.$css_prop_name.'" class="form-control font" data-prop="'.$css_prop_name.'"/></div>';
     }
-    public function generateTextBox($label_name, $box_value, $class_name, $css_prop_name){
-        return '<div class="col-lg-12 col-sm-12"><div class="form-group"><label for="'.$class_name.'_'.$css_prop_name.'">'.$label_name.'</label><br><input type="text" class="form-control text_field_css_prop" value="'.$box_value.'" id="'.$class_name.'_'.$css_prop_name.'" name="wrt['.$class_name.']['.$css_prop_name.']" data-classes="'.$class_name.'" data-prop="'.$css_prop_name.'"></div></div>';
+
+    public function generateTextBox($label_name, $css_prop_name) {
+        return '<div class="form-group"><label for="'. $css_prop_name . '">' . $label_name . '</label><br /><input type="text" class="form-control text_field_css_prop" id="' . $css_prop_name . '" /></div>';
     }
+
 }

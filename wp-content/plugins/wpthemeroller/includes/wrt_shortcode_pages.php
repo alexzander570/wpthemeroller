@@ -11,6 +11,29 @@ class wrtShortCodePages{
     function __construct() {
         $this->wrtDbOperations_obj = new wrtDbOperations();
         $this->wrtGenerateHtmlTags_obj = new wrtGenerateHtmlTags();
+        add_action("template_redirect", array($this, 'my_theme_redirect'));
+    }
+    function my_theme_redirect() {
+        global $wp;
+        $plugindir = __DIR__;
+        if (isset($wp->query_vars["pagename"]) && $wp->query_vars["pagename"] == 'theme-settings') {
+            $templatefilename = 'wrt_full_width_page.php';
+            if (file_exists(TEMPLATEPATH . '/' . $templatefilename)) {
+                $return_template = TEMPLATEPATH . '/' . $templatefilename;
+            } else {
+                $return_template = $plugindir . '/../templates/' . $templatefilename;
+            }
+            $this->do_theme_redirect($return_template);
+        }
+    }
+    function do_theme_redirect($url) {
+        global $post, $wp_query;
+        if (have_posts()) {
+            include($url);
+            die();
+        } else {
+            $wp_query->is_404 = true;
+        }
     }
     public function wrtThemeCustomizer(){
         
@@ -23,11 +46,10 @@ class wrtShortCodePages{
     }
     
     public function wrtCssProperties(){
-        include (__DIR__.'templates/wrtCssProperties.php');
+        include (__DIR__.'/../templates/wrtCssProperties.php');
     }
 
     public function wrtDemoPage(){
         include (__DIR__.'/../templates/wrtCustomizeThemeDemoPage.php');
     }
-
 }

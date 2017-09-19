@@ -11,12 +11,14 @@ class wrtUserStyleOperations {
     public function getCurrentUserStyle() {
         if (!is_admin()) {
             $user_custom_style = '';
+            $current_user_id = get_current_user_id();
+            
             $wrtDbOperations_obj = new wrtDbOperations();
-            $style_sheet = $wrtDbOperations_obj->get_current_user_style_sheet();
+            $style_sheet = $wrtDbOperations_obj->get_current_user_style_sheet($current_user_id);
             if (!empty($style_sheet)) {
                 $style_sheet = json_decode($style_sheet, true);
                 foreach ($style_sheet as $class_name => $styles) {
-                    $user_custom_style .= ".{$class_name}{";
+                    $user_custom_style .= "{$class_name}{";
                     foreach ($styles as $style_prop => $style_prop_value) {
                         if (!empty($style_prop_value) && isset($style_prop_value)) {
                             $user_custom_style .= $style_prop . ':' . stripcslashes($style_prop_value) . ' !important;';
