@@ -128,6 +128,21 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <?php echo $this->wrtGenerateHtmlTags_obj->generateSelectBox('Text decoration', 'text-decoration', TEXTDECORATION, 'hover'); ?>
                                     </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <?php echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Font color', 'font-color', 'hover'); ?>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <?php echo $this->wrtGenerateHtmlTags_obj->generateSelectBox('Border style', 'border-style', BORDERSTYLE, 'hover'); ?>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <?php echo $this->wrtGenerateHtmlTags_obj->geterateColorBox('Border color', 'border-color', 'hover'); ?>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <?php echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border width', 'border-width', 'hover'); ?>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <?php echo $this->wrtGenerateHtmlTags_obj->generateTextBox('Border radius', 'border-radius', 'hover'); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

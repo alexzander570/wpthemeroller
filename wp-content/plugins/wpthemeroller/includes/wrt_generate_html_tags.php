@@ -34,12 +34,12 @@ class wrtGenerateHtmlTags {
         return '<div class="form-group"><label for="' . $css_prop_name . '">' . $label_name . '</label><br /><input type="text" id="'.$css_prop_name.'" class="form-control demo" data-prop="'.$css_prop_name.'" data-propfor="'.$hover_active.'"/></div>';
     }
 
-    public function generateFontSelectBox($label_name, $css_prop_name) {
-        return '<div class="form-group"><label for="inline">' . $label_name . '</label><br/><input type="text" id="'.$css_prop_name.'" class="form-control font" data-prop="'.$css_prop_name.'"/></div>';
-    }
-
-    public function generateTextBox($label_name, $css_prop_name) {
-        return '<div class="form-group"><label for="'. $css_prop_name . '">' . $label_name . '</label><br /><input type="text" class="form-control text_field_css_prop" id="' . $css_prop_name . '" /></div>';
+    public function generateTextBox($label_name, $css_prop_name, $prop_for='') {
+        $hover_active = '';
+        if($prop_for == 'hover'){
+            $hover_active = 'hover';
+        }
+        return '<div class="form-group"><label for="'. $css_prop_name . '">' . $label_name . '</label><br /><input type="text" class="form-control text_field_css_prop" id="' . $css_prop_name . '"  data-propfor="'.$hover_active.'"/></div>';
     }
 
 }
